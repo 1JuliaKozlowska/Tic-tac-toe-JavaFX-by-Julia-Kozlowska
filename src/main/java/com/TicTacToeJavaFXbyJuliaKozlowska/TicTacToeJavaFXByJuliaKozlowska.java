@@ -2,11 +2,13 @@ package com.TicTacToeJavaFXbyJuliaKozlowska;
 
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
+import javafx.stage.WindowEvent;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -25,6 +27,7 @@ public class TicTacToeJavaFXByJuliaKozlowska extends Application {
 
         GameSettings gameSettings = new GameSettings();
         gameSettings.setGameSkin(GameSettings.Skin.DEFAULT);
+
 
         ChangeListener<Number> heightListener = (observable, oldValue, newValue) -> {
             if (mainWindow.isShowing() && newValue.doubleValue() >= AppConstants.WIN_MIN_HEIGHT) {
@@ -52,6 +55,12 @@ public class TicTacToeJavaFXByJuliaKozlowska extends Application {
         mainWindow.setScene(scene);
         mainWindow.show();
 
+    }
+
+    @Override
+    public void stop() {
+        System.out.println("Application is stopping...");
+        System.exit(0);
     }
 
     public static void main(String[] args) {
